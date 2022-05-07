@@ -1,0 +1,58 @@
+.orderContainer{
+    margin: 1.6rem 0;
+    height: 270px;
+    overflow-y: auto;
+
+    form{
+         > div{
+            margin-bottom: 0.8rem;
+
+            label{
+                display: block;
+                font-weight: 700;
+                margin-bottom: 0.4rem;
+
+                &.error{
+                    color: #ca3e51;
+                }
+            }
+
+            input{
+                font: inherit;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                max-width: 100%;
+                width: 32rem;
+            }
+         }
+    }
+}
+
+.orderAction{
+        text-align: right;
+
+        button{
+            background-color: transparent;
+            border: 1px solid #8a2b06;
+            border-radius: 25px;
+            cursor: pointer;
+            font: inherit;
+            margin-left: 1.6rem;
+            padding: 0.8rem 3.2rem;
+
+            &:hover, &:active{
+                background-color: #5a1a01;
+                border-color: #5a1a01;
+                color: #fff;
+            }
+        }
+
+        .outline{
+            color: #8a2b06;
+        }
+
+        .fill{
+            background-color: #8a2b06;
+            color: #fff;
+        }
+    }

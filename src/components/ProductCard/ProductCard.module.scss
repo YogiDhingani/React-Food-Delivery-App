@@ -1,0 +1,39 @@
+@import "../../styles/mixins.scss";
+
+.cardContainer{
+    width: 900px;
+    max-width: 950px;
+    animation: productListAnimation 1s ease-out forwards;
+    -webkit-animation: productListAnimation 1s ease-out forwards;
+    margin: 3.2rem auto;
+
+    @include respond('tab-port') {
+        width: 550px;
+        max-width: 650px;
+    }
+
+    @include respond('phone') {
+        width: 290px;
+        max-width: 330px;
+    }
+    
+    .card{
+        background-color: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,.25);
+        padding: 1.6rem;
+    }
+
+    @keyframes productListAnimation{
+        0% {
+            opacity: 0;
+            -webkit-transform: translateY(4rem);
+            transform: translateY(4rem);
+        }
+        100% {
+            opacity: 1;
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+    }
+}

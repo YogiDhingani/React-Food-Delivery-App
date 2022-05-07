@@ -1,0 +1,53 @@
+.product{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 1.6rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid #ccc;
+
+    h3{
+        margin: 0 0 0.4rem 0; 
+    }
+
+    b{
+        margin-top: 0.4rem;
+        display: block;
+        font-size: 2rem;
+        color: #ad5502;
+    }
+
+    form{
+        text-align: right;
+
+        > div:nth-child(1){
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        button{
+            background-color: #8a2b06;
+            border: 1px solid #8a2b06;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            padding: 0.4rem 3.2rem;
+            cursor: pointer;
+
+            &:hover{
+                background-color: #641e03;
+                border-color: #641e03;
+            }
+        }
+
+        input{
+            font-size: 1.6rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding-left: 0.8rem;
+        }
+    }
+}
