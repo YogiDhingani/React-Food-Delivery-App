@@ -8,7 +8,6 @@ import '../SignIn/SignIn.scss';
 const SignIn = () => {
   const [mobileForm, setMobileForm] = useState(true);
   const navigate = useNavigate();
-  const window: any = '';
 
   const loginSubmit = (values: any) => {
     let phoneNumber = '+91' + values.phone;

@@ -5,11 +5,11 @@ import { initializeApp } from 'firebase/app';
 import { ROUTES, FIREBASE_CONFIG } from './util/constants';
 import { Home, SignIn } from './components';
 
+
 const AuthApp = () => {
   const firebaseConfig = FIREBASE_CONFIG;
   const app = initializeApp(firebaseConfig);
   const auth = getAuth();
-  const window: any = '';
 
   const onSignInSubmit = () => {};
 
