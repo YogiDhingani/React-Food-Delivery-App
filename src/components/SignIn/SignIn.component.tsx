@@ -8,6 +8,7 @@ import '../SignIn/SignIn.scss';
 const SignIn = () => {
   const [mobileForm, setMobileForm] = useState(true);
   const navigate = useNavigate();
+  const window: any = '';
 
   const loginSubmit = (values: any) => {
     let phoneNumber = '+91' + values.phone;
@@ -34,7 +35,6 @@ const SignIn = () => {
         navigate(ROUTES.HOME);
       })
       .catch((error: any) => {
-        // User coul
         alert(error.message);
       });
   };

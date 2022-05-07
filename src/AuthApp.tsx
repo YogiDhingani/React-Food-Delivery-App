@@ -9,6 +9,9 @@ const AuthApp = () => {
   const firebaseConfig = FIREBASE_CONFIG;
   const app = initializeApp(firebaseConfig);
   const auth = getAuth();
+  const window: any = '';
+
+  const onSignInSubmit = () => {};
 
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(

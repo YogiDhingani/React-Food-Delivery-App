@@ -30,7 +30,7 @@ const Home = () => {
   }, [cartItems]);
 
   const onSubmit = (values: any) => {
-    let quantity = totalQuantity;
+    let quantity: string | number = totalQuantity;
     let tempCartItems = cartItems;
     if (Object.keys(tempCartItems).includes(values.id)) {
       Object.keys(tempCartItems).map((key) => {
@@ -45,9 +45,9 @@ const Home = () => {
     } else {
       tempCartItems[values.id] = { ...values };
     }
-    quantity = parseInt(quantity) + parseInt(values.quantity);
+    quantity = parseInt(quantity.toString()) + parseInt(values.quantity);
     setCartItems({ ...tempCartItems });
-    setTotalQuantity(parseInt(quantity));
+    setTotalQuantity(parseInt(quantity.toString()));
   };
 
   return (
