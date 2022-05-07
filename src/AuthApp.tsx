@@ -29,12 +29,11 @@ const AuthApp = () => {
 
   return (
     <BrowserRouter>
-      <div id='recaptcha-container'>
-        <Routes>
-          <Route path={ROUTES.HOME} element={<Home />} />
-          <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
-        </Routes>
-      </div>
+      <div id='recaptcha-container'></div>
+      <Routes>
+        <Route path={ROUTES.HOME} element={<Home />} />
+        <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
+      </Routes>
     </BrowserRouter>
   );
 };
