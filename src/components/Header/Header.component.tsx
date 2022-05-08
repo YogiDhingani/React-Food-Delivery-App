@@ -37,7 +37,7 @@ const HeaderComponent = ({ quantity }) => {
     <div className={HeaderStyle.header}>
       <h1>React Meal</h1>
 
-      {/* <button onClick={onSignOut}>Sign out</button> */}
+      <button onClick={onSignOut}>Sign out</button>
 
       <button className={className} onClick={() => setModalVisibility(true)}>
         <b>Your Cart</b>

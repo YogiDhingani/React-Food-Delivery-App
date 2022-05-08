@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { signInWithPhoneNumber, getAuth } from 'firebase/auth';
 import { ROUTES } from '../../util/constants';
+import { getUser } from '../../util/helper';
 import SignInStyle from './SignIn.module.scss';
 import Loader from '../Loader';
 
@@ -11,6 +12,11 @@ const SignIn = () => {
   const [mobileForm, setMobileForm] = useState(true);
   const [isDisabled, setIsDisabled] = useState(false);
   const navigate = useNavigate();
+  const [user, loading] = getUser();
+
+  if (user) {
+    navigate(ROUTES.HOME);
+  }
 
   const loginSubmit = (values: any) => {
     setIsDisabled(true);
@@ -114,7 +120,7 @@ const SignIn = () => {
         </div>
       </div>
 
-      {isDisabled && <Loader />}
+      {(isDisabled || loading) && <Loader />}
     </>
   );
 };
