@@ -26,7 +26,7 @@ const Home = () => {
     Object.keys(cartItems).map((key) => {
       tempTotal += cartItems[key].quantity * cartItems[key].price;
     });
-    setTotal(tempTotal);
+    setTotal(Math.round(tempTotal * 100) / 100);
   }, [cartItems]);
 
   const onSubmit = (values: any) => {

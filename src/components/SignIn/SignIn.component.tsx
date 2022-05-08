@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { signInWithPhoneNumber, getAuth } from 'firebase/auth';
 import { ROUTES } from '../../util/constants';
-import '../SignIn/SignIn.scss';
+import SignInStyle from './SignIn.module.scss';
 
 const SignIn = () => {
   const [mobileForm, setMobileForm] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
   const navigate = useNavigate();
 
   const loginSubmit = (values: any) => {
+    setIsDisabled(true);
     let phoneNumber = '+91' + values.phone;
     const appVerifier = window.recaptchaVerifier;
 
@@ -19,22 +22,28 @@ const SignIn = () => {
       .then((confirmationResult) => {
         window.confirmationResult = confirmationResult;
         setMobileForm(false);
+        setIsDisabled(false);
       })
       .catch((error) => {
-        alert(error.message);
+        Swal.fire('Error!', error.message, 'error');
+        setIsDisabled(false);
       });
   };
 
   const otpSubmit = (values: any) => {
+    setIsDisabled(true);
     let otp = values.otp;
 
     window.confirmationResult
       .confirm(otp)
       .then((confirmationResult: any) => {
+        setIsDisabled(false);
         navigate(ROUTES.HOME);
+        Swal.fire('Welcome!', 'Verification Successful!', 'success');
       })
       .catch((error: any) => {
-        alert(error.message);
+        setIsDisabled(false);
+        Swal.fire('Error!', error.message, 'error');
       });
   };
 
@@ -59,22 +68,22 @@ const SignIn = () => {
   };
 
   return (
-    <div className='wrapper'>
-      <h1 className='main-heading'>Sign in</h1>
-      <p className='sub-text'>
+    <div className={SignInStyle.wrapper}>
+      <h1 className={SignInStyle.mainHeading}>Sign in</h1>
+      <p className={SignInStyle.subText}>
         {mobileForm ? 'Sign in using your mobile number.' : 'Verify your OTP'}
       </p>
 
-      <div className='form-wrapper'>
+      <div className={SignInStyle.formWrapper}>
         <Form
           onSubmit={mobileForm ? loginSubmit : otpSubmit}
           validate={formValidate}
-          render={({ handleSubmit }) => (
+          render={({ handleSubmit, invalid }) => (
             <form onSubmit={handleSubmit}>
               <Field
                 name={mobileForm ? 'phone' : 'otp'}
                 render={({ input, meta }) => (
-                  <div className='input-field'>
+                  <div className={SignInStyle.inputField}>
                     <label>{mobileForm ? 'Phone Number' : 'Enter OTP'}</label>
                     <input
                       type='text'
@@ -84,13 +93,17 @@ const SignIn = () => {
                       autoComplete='false'
                     />
                     {meta.error && meta.touched && (
-                      <span className='errorRedText'>{meta.error}</span>
+                      <span className='errorText'>{meta.error}</span>
                     )}
                   </div>
                 )}
               />
 
-              <button className='main-button' type='submit' id='sign-in-button'>
+              <button
+                disabled={invalid || isDisabled}
+                type='submit'
+                id='sign-in-button'
+              >
                 {mobileForm ? 'Sign in' : 'Verify OTP'}
               </button>
             </form>
