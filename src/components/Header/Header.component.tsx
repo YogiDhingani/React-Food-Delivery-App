@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { getAuth, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { ROUTES } from '../../util/constants';
 import { ProductContext } from '../../contexts/Product';
 import HeaderStyle from './Header.module.scss';
@@ -28,7 +29,7 @@ const HeaderComponent = ({ quantity }) => {
         navigate(ROUTES.SIGN_IN);
       })
       .catch((error) => {
-        // An error happened.
+        Swal.fire('Error!', error.message, 'error');
       });
   };
 

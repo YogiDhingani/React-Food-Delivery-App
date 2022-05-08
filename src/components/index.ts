@@ -7,5 +7,6 @@ import Order from "./Order";
 import Product from "./Product";
 import ProductCard from "./ProductCard";
 import SignIn from "./SignIn";
+import Loader from "./Loader";
 
-export { CartItem, CartList, Dialog, Header, Home, Order, Product, ProductCard, SignIn };
+export { CartItem, CartList, Dialog, Header, Home, Order, Product, ProductCard, SignIn, Loader };

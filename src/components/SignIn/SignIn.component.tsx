@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { signInWithPhoneNumber, getAuth } from 'firebase/auth';
 import { ROUTES } from '../../util/constants';
 import SignInStyle from './SignIn.module.scss';
+import Loader from '../Loader';
 
 const SignIn = () => {
   const [mobileForm, setMobileForm] = useState(true);
@@ -68,49 +69,53 @@ const SignIn = () => {
   };
 
   return (
-    <div className={SignInStyle.wrapper}>
-      <h1 className={SignInStyle.mainHeading}>Sign in</h1>
-      <p className={SignInStyle.subText}>
-        {mobileForm ? 'Sign in using your mobile number.' : 'Verify your OTP'}
-      </p>
+    <>
+      <div className={SignInStyle.wrapper}>
+        <h1 className={SignInStyle.mainHeading}>Sign in</h1>
+        <p className={SignInStyle.subText}>
+          {mobileForm ? 'Sign in using your mobile number.' : 'Verify your OTP'}
+        </p>
 
-      <div className={SignInStyle.formWrapper}>
-        <Form
-          onSubmit={mobileForm ? loginSubmit : otpSubmit}
-          validate={formValidate}
-          render={({ handleSubmit, invalid }) => (
-            <form onSubmit={handleSubmit}>
-              <Field
-                name={mobileForm ? 'phone' : 'otp'}
-                render={({ input, meta }) => (
-                  <div className={SignInStyle.inputField}>
-                    <label>{mobileForm ? 'Phone Number' : 'Enter OTP'}</label>
-                    <input
-                      type='text'
-                      {...input}
-                      placeholder={mobileForm ? 'Phone' : 'One Time Password'}
-                      name={mobileForm ? 'phone' : 'otp'}
-                      autoComplete='false'
-                    />
-                    {meta.error && meta.touched && (
-                      <span className='errorText'>{meta.error}</span>
-                    )}
-                  </div>
-                )}
-              />
+        <div className={SignInStyle.formWrapper}>
+          <Form
+            onSubmit={mobileForm ? loginSubmit : otpSubmit}
+            validate={formValidate}
+            render={({ handleSubmit, invalid }) => (
+              <form onSubmit={handleSubmit}>
+                <Field
+                  name={mobileForm ? 'phone' : 'otp'}
+                  render={({ input, meta }) => (
+                    <div className={SignInStyle.inputField}>
+                      <label>{mobileForm ? 'Phone Number' : 'Enter OTP'}</label>
+                      <input
+                        type='text'
+                        {...input}
+                        placeholder={mobileForm ? 'Phone' : 'One Time Password'}
+                        name={mobileForm ? 'phone' : 'otp'}
+                        autoComplete='false'
+                      />
+                      {meta.error && meta.touched && (
+                        <span className='errorText'>{meta.error}</span>
+                      )}
+                    </div>
+                  )}
+                />
 
-              <button
-                disabled={invalid || isDisabled}
-                type='submit'
-                id='sign-in-button'
-              >
-                {mobileForm ? 'Sign in' : 'Verify OTP'}
-              </button>
-            </form>
-          )}
-        />
+                <button
+                  disabled={invalid || isDisabled}
+                  type='submit'
+                  id='sign-in-button'
+                >
+                  {mobileForm ? 'Sign in' : 'Verify OTP'}
+                </button>
+              </form>
+            )}
+          />
+        </div>
       </div>
-    </div>
+
+      {isDisabled && <Loader />}
+    </>
   );
 };
 

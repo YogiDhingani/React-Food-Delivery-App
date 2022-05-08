@@ -19,7 +19,6 @@ const AuthApp = () => {
       {
         size: 'invisible',
         callback: (response: any) => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
           onSignInSubmit();
         },
       },
